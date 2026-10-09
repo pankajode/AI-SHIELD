@@ -14,6 +14,7 @@ AI-SHIELD monitors selected system activity, evaluates configurable detection ru
 - Voice alerts
 - JSONL event logging
 - Text and CSV incident reports
+- Local security dashboard
 - Policy configuration
 - Automated tests
 
@@ -21,38 +22,65 @@ AI-SHIELD monitors selected system activity, evaluates configurable detection ru
 
 - Windows
 - Python 3.13 or compatible
-- psutil
-- pyttsx3 for voice alerts
+- `psutil`
+- `pyttsx3` for voice alerts
 
 Install dependencies:
 
 ```powershell
 python -m pip install psutil pyttsx3
+```
+
 ## Run the Monitor
 
 From the project root:
 
 ```powershell
 python src\main.py
+```
+
+## Open the Dashboard
+
+In a separate PowerShell window, run:
+
+```powershell
+python src\dashboard.py
+```
+
+Open this address in your browser:
+
+http://127.0.0.1:8765
+
+The dashboard reads `logs/events.jsonl` and displays event totals, severity counts, event types, and recent detection records. It refreshes every 10 seconds.
+
+The dashboard is local-only and does not start the monitor or perform automatic blocking.
+
+## Generate Incident Reports
+
+```powershell
 python src\incident_report.py
+```
+
+## Run Tests
+
+```powershell
 python -m unittest discover -s .\tests -v
 python -m compileall -q .\src .\tests
-Safety and Limitations
+```
 
-Automatic blocking is disabled by default.
+## Safety and Limitations
 
-This project is a monitoring and detection tool, not a guarantee of protection against all threats or AI agents.
+- Automatic blocking is disabled by default.
+- This project is a monitoring and detection tool, not a guarantee of protection against all threats or AI agents.
+- File monitoring is periodic, not guaranteed real-time monitoring.
+- Some system information may be unavailable because of Windows permissions.
+- Detection results may include false positives and should be reviewed.
+- The dashboard summarizes recorded events; a severity label alone does not confirm an attack.
 
-File monitoring is periodic, not guaranteed real-time monitoring.
+## Project Status
 
-Some system information may be unavailable because of Windows permissions.
+AI-SHIELD is under active development.
 
-Detection results may include false positives and should be reviewed.
-
-Project Status
-
-AI-SHIELD is under active development. Future improvements may include a dashboard, additional detection rules, and carefully controlled response features.
-
-License
+## License
 
 No license has been selected yet. All rights remain with the copyright holder until a license is added.
