@@ -1,0 +1,28 @@
+﻿{
+    "policy_version": "1.0",
+    "monitoring": {
+        "enabled": true,
+        "scan_interval_seconds": 10,
+        "monitor_processes": true,
+        "monitor_network": true,
+        "monitor_files": true
+    },
+    "risk_scoring": {
+        "INFO": 0,
+        "WARNING": 25,
+        "HIGH": 50,
+        "CRITICAL": 75
+    },
+    "response": {
+        "automatic_blocking": false,
+        "voice_alerts": true,
+        "log_events": true
+    },
+    "sensitive_file_names": [
+        "password.txt",
+        "passwords.txt",
+        "credentials.txt",
+        ".env"
+    ],
+    "notes": "Monitoring and alerting only. No automatic blocking."
+}
